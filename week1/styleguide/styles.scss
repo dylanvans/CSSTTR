@@ -6,7 +6,6 @@
     unicode-range: U+2a, U+2f;
 }
 
-
 $margin: 1em;
 
 $main-white: #FFFFFA;
@@ -19,8 +18,27 @@ $light-red: lighten($main-red, 35%);
 $main-green: #85FFC7;
 $light-green: lighten($main-green, 15%);
 
-* {
-	box-sizing: border-box;
+a {
+	color: currentColor;
+}
+
+p {
+	font-size: 1.1rem;
+	max-width: 38em;
+	line-height: 1.4;
+}
+
+img {
+	max-width: 100%;
+}
+
+figure {
+	margin: 0;
+	position: relative;
+}
+
+input, textarea {
+	font-size: 1em;
 }
 
 body {
@@ -30,6 +48,7 @@ body {
 }
 
 header {
+	box-sizing: border-box;
 	color: $main-white;
 	width: 100%;
 	background-color: $main-black;
@@ -47,6 +66,7 @@ header h1 {
 header h1 span {
 	font-size: 1rem;
 	opacity: .8;
+	display: block;
 }
 
 .chapter {
@@ -79,23 +99,20 @@ header h1 span {
 	margin: $margin*1.2;
 }
 
-.component-description {
+.container-component > footer {
+	box-sizing: border-box;
 	min-height: 40vh;
 	width: 100%;
 	background-color: $main-white;
 	padding: $margin*2.5 $margin*1.5;
 }
 
-.component-description h2 {
+.container-component > footer h2 {
 	margin: 0;
 }
 
 .chapter:nth-child(odd) .component-block {
 	background-color: $light-blue;
-}
-
-a {
-	color: currentColor;
 }
 
 
@@ -163,12 +180,14 @@ button[type=submit] {
 	margin-top: $margin*.5;
 	padding: $margin*.75 $margin*.5;
 	background-color: $main-green;
-	transition: background-color .3s ease-in-out;
+	transition: all .2s ease-in-out;
 }
 
 button[type=submit]:hover {
 	background-color: darken($main-green, 10%);
 	cursor: pointer;
+	transform: translateY(-.1rem);
+	box-shadow: 0 6px 0 -3px $main-grey;
 }
 
 input[type=email], input[type=password] {
@@ -196,7 +215,7 @@ label[for=field-stay-logged-in] {
 
 .container-input label {
 	position: absolute;
-	left: 1em;
+	left: 1.5em;
 	top: 49%;
 	transform: translateY(-50%);
 	transition: all .3s ease-in-out;
@@ -205,7 +224,7 @@ label[for=field-stay-logged-in] {
 /* Resource https://codepen.io/sivan/pen/alKwf */
 .container-input input:focus ~ label {
 	top: .9em;
-	left: 1rem;
+	left: 1.5em;
 	font-size: .8rem;
 	color: $light-grey;
 }
@@ -215,31 +234,43 @@ label[for=field-stay-logged-in] {
 /*// ========================================================
 // Media Item
 // ========================================================*/
-article img {
-	max-width: 100%;
+.media-item {
+	position: relative;
+	transition: background-color .3s ease-in-out;
+}
+
+.media-item img {
 	width: 100%;
 }
 
-article h1 {
+.media-item h1 {
 	font-size: 2em;
 	text-align: center;
 }
 
-article a {
-	position: relative;
+.media-item a {
 	font-weight: 100;
 	text-decoration: none;
 	transition: all .3s ease-in-out;
 }
 
-article a:hover {
-	background-color: $light-red;
+.media-item a:after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	content: '';
+	width: 100%;
+	height: 100%;
+}
+
+.media-item:hover {
+	background-color: $light-green;
 }
 
 
 
 /*// ========================================================
-// Media Item
+// Chat
 // ========================================================*/
 .component-chat {
 	width: 90%;
@@ -300,7 +331,118 @@ form.chat-form textarea {
 	height: 3rem;
 }
 
+
+
+/*// ========================================================
+// Navigation
+// ========================================================*/
+.main-nav {
+	width: 100%;
+	padding: $margin $margin 0;
+	margin: $margin;
+}
+
+nav ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.main-nav a {
+	text-decoration: none;
+}
+
+.main-nav-list {
+	display: flex;
+	width: 100%;
+}
+
+.main-nav-list > li {
+	width: calc(100%/4);
+}
+
+.main-nav-list li {
+	text-align: center;
+	position: relative;
+	background-color: $main-white;
+	padding: 1em;
+	transition: background-color .3s ease-in-out;
+}
+
+.main-nav-list li:hover {
+	background-color: $light-green;
+}
+
+.main-nav-list > li:not(:last-child) { 
+	border-right: 1px solid $light-green;
+}
+
+.sub-nav {
+	display: none;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	position: absolute;
+	flex-direction: column;
+}
+
+.main-nav-list li:hover .sub-nav {
+	display: flex;
+}
+
+
+
+/*// ========================================================
+// Picture with subtitle
+// ========================================================*/
+figure figcaption {
+	position: absolute;
+	bottom: 0;
+	color: $main-white;
+	background-color: rgba(0,0,0,.7);
+	padding: $margin;
+}
+
+figcaption p {
+	margin: 0 0 1em;
+}
+
+figcaption footer {
+	font-size: .8em;
+}
+
+
+
+/*// ========================================================
+// Rating
+// ========================================================*/
+.component-rating {
+	display: flex;
+	flex-direction: row;
+}
+
+.component-rating input[type=radio] {
+	display: none;
+}
+
+.component-rating input:checked + label {
+	background-color: blue;
+}
+
+.component-rating label {
+	text-align: center;
+}
+
+
+
+/*// ========================================================
+// Media min-width
+// ========================================================*/
 @media only screen and (min-width: 48em) {
+	header h1 span {
+		display: inline-block;
+	}
+
 	.chapter:nth-child(odd) .component-block {
 		order: 1;
 	}
@@ -315,8 +457,24 @@ form.chat-form textarea {
 		width: 60vw;
 	}
 
-	.component-description {
+	.container-component > footer {
 		height: 100%;
 		width: 40vw;
+	}
+
+
+
+	/*// ========================================================
+	// Navigation
+	// ========================================================*/
+	.main-nav {
+		padding: 0;
+		padding-left: $margin;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.main-nav-list {
+		width: auto;
 	}
 }

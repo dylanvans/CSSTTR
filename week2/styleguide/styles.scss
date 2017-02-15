@@ -1,0 +1,480 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin');
+
+@font-face {
+    font-family: Ampersand;
+    src: local('courier');
+    unicode-range: U+2a, U+2f;
+}
+
+$margin: 1em;
+
+$main-white: #FFFFFA;
+$main-black: #0C090D;
+$main-grey: #515052;
+$light-grey: lighten($main-grey, 40%);
+$light-blue: lighten(#DDF0FF, 2%);
+$main-red: #FF312E;
+$light-red: lighten($main-red, 35%);
+$main-green: #85FFC7;
+$light-green: lighten($main-green, 15%);
+
+a {
+	color: currentColor;
+}
+
+p {
+	font-size: 1.1rem;
+	max-width: 38em;
+	line-height: 1.4;
+}
+
+img {
+	max-width: 100%;
+}
+
+figure {
+	margin: 0;
+	position: relative;
+}
+
+input, textarea {
+	font-size: 1em;
+}
+
+body {
+	margin: 0;
+	font-family: 'Ampersand', 'Cabin', sans-serif;
+	background-color: $main-black;
+}
+
+header {
+	box-sizing: border-box;
+	color: $main-white;
+	width: 100%;
+	background-color: $main-black;
+	padding: $margin $margin*1.5;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+header h1 {
+	margin: 0;
+	font-size: 1.5rem;
+}
+
+header h1 span {
+	font-size: 1rem;
+	opacity: .8;
+	display: block;
+}
+
+.chapter {
+	color: $main-black;
+	margin: 0;
+}
+
+.container-component {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	min-height: 100vh;
+	background-color: $main-white;
+}
+
+.component-block {
+	background-color: $light-red;
+	width: 100%;
+	min-height: 60vh;
+	display: flex;
+ 	align-items: center;
+  	justify-content: center;
+}
+
+.component {
+	background-color: $main-white;
+	padding: $margin*1.5 $margin*2;
+	border-radius: .2em;
+	margin: $margin*1.2;
+}
+
+.container-component > footer {
+	box-sizing: border-box;
+	min-height: 40vh;
+	width: 100%;
+	background-color: $main-white;
+	padding: $margin*2.5 $margin*1.5;
+}
+
+.container-component > footer h2 {
+	margin: 0;
+}
+
+.chapter:nth-child(odd) .component-block {
+	background-color: $light-blue;
+}
+
+
+
+/*// ========================================================
+//	Lightbox
+// ========================================================*/
+/* Resource lightbox: https://developer.mozilla.org/en-US/docs/Web/CSS/:target */
+div.lightbox {
+	display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+div.lightbox:target {
+	z-index: 1;
+	display: flex;
+	align-items: center;
+  	justify-content: center;
+}
+
+div.lightbox section {
+	border-radius: .2em;
+	padding: $margin;
+	background-color: $main-white;
+}
+
+.btn-close-lightbox::after {
+	z-index: -1;
+	content: "";		
+	display: block;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0, .8);
+}
+
+
+
+/*// ========================================================
+// Log in 
+// ========================================================*/
+fieldset {
+	border: 0;
+	padding: 0;
+	margin: 0;
+}
+
+button {
+	border: 0;
+	font-size: 1rem;
+	text-align: center;
+}
+
+button[type=submit] {
+	display: block;
+	width: 100%;
+	color: $main-black;
+	font-weight: 300;
+	margin-top: $margin*.5;
+	padding: $margin*.75 $margin*.5;
+	background-color: $main-green;
+	transition: all .2s ease-in-out;
+}
+
+button[type=submit]:hover {
+	background-color: darken($main-green, 10%);
+	cursor: pointer;
+	transform: translateY(-.1rem);
+	box-shadow: 0 6px 0 -3px $main-grey;
+}
+
+input[type=email], input[type=password] {
+	border: 1px solid $light-grey;
+	padding: 1.5em;
+	width: min-content;
+}
+
+label[for=field-stay-logged-in] {
+	font-size: .8em;
+	color: $light-grey;
+}
+
+.container-input:first-child input {
+	border-bottom: 0;
+}
+
+.container-input:nth-child(2) {
+	margin-bottom: .5em;
+}
+
+.container-input {
+	position: relative;
+}
+
+.container-input label {
+	position: absolute;
+	left: 1.5em;
+	top: 49%;
+	transform: translateY(-50%);
+	transition: all .3s ease-in-out;
+}
+
+/* Resource https://codepen.io/sivan/pen/alKwf */
+.container-input input:focus ~ label {
+	top: .9em;
+	left: 1.5em;
+	font-size: .8rem;
+	color: $light-grey;
+}
+
+
+
+/*// ========================================================
+// Media Item
+// ========================================================*/
+.media-item {
+	position: relative;
+	transition: background-color .3s ease-in-out;
+}
+
+.media-item img {
+	width: 100%;
+}
+
+.media-item h1 {
+	font-size: 2em;
+	text-align: center;
+}
+
+.media-item a {
+	font-weight: 100;
+	text-decoration: none;
+	transition: all .3s ease-in-out;
+}
+
+.media-item a:after {
+	position: absolute;
+	top: 0;
+	left: 0;
+	content: '';
+	width: 100%;
+	height: 100%;
+}
+
+.media-item:hover {
+	background-color: $light-green;
+}
+
+
+
+/*// ========================================================
+// Chat
+// ========================================================*/
+.component-chat {
+	width: 90%;
+}
+
+ol.chat-list {
+	padding: 0;
+	list-style-type: none;
+	display: flex;
+	flex-direction: column;
+}
+
+li.chat-item {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+li.chat-item[data-message="received"] {
+	align-items: flex-end;
+}
+
+li.chat-item .container-message {
+	padding: $margin*.5 $margin;
+	margin-bottom: $margin;
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background-color: $light-blue;
+}
+
+li.chat-item[data-message="received"] .container-message {
+	background-color: $light-green;
+}
+
+li.chat-item p {
+	margin: $margin*.5 0 $margin;
+}
+
+li.chat-item footer {
+	margin: $margin*.5 0;
+	font-size: .8em;
+}
+
+li.chat-item footer p {
+	margin: 0;
+	color: $main-grey;
+}
+
+form.chat-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+form.chat-form textarea {
+	height: 3rem;
+}
+
+
+
+/*// ========================================================
+// Navigation
+// ========================================================*/
+.main-nav {
+	width: 100%;
+	padding: $margin $margin 0;
+	margin: $margin;
+}
+
+nav ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.main-nav a {
+	text-decoration: none;
+}
+
+.main-nav-list {
+	display: flex;
+	width: 100%;
+}
+
+.main-nav-list > li {
+	width: calc(100%/4);
+}
+
+.main-nav-list li {
+	text-align: center;
+	position: relative;
+	background-color: $main-white;
+	padding: 1em;
+	transition: background-color .3s ease-in-out;
+}
+
+.main-nav-list li:hover {
+	background-color: $light-green;
+}
+
+.main-nav-list > li:not(:last-child) { 
+	border-right: 1px solid $light-green;
+}
+
+.sub-nav {
+	display: none;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	position: absolute;
+	flex-direction: column;
+}
+
+.main-nav-list li:hover .sub-nav {
+	display: flex;
+}
+
+
+
+/*// ========================================================
+// Picture with subtitle
+// ========================================================*/
+figure figcaption {
+	position: absolute;
+	bottom: 0;
+	color: $main-white;
+	background-color: rgba(0,0,0,.7);
+	padding: $margin;
+}
+
+figcaption p {
+	margin: 0 0 1em;
+}
+
+figcaption footer {
+	font-size: .8em;
+}
+
+
+
+/*// ========================================================
+// Rating
+// ========================================================*/
+.component-rating {
+	display: flex;
+	flex-direction: row;
+}
+
+.component-rating input[type=radio] {
+	display: none;
+}
+
+.component-rating input:checked + label {
+	background-color: blue;
+}
+
+.component-rating label {
+	text-align: center;
+}
+
+
+
+/*// ========================================================
+// Media min-width
+// ========================================================*/
+@media only screen and (min-width: 48em) {
+	header h1 span {
+		display: inline-block;
+	}
+
+	.chapter:nth-child(odd) .component-block {
+		order: 1;
+	}
+
+	.container-component {
+		min-height: 100vh;
+		flex-direction: row;
+	}
+
+	.component-block {
+		min-height: 100%;
+		width: 60vw;
+	}
+
+	.container-component > footer {
+		height: 100%;
+		width: 40vw;
+	}
+
+
+
+	/*// ========================================================
+	// Navigation
+	// ========================================================*/
+	.main-nav {
+		padding: 0;
+		padding-left: $margin;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.main-nav-list {
+		width: auto;
+	}
+}
