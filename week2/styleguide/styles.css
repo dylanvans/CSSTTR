@@ -6,10 +6,13 @@
 a {
   color: currentColor; }
 
+a:hover, button:hover {
+  cursor: pointer; }
+
 p {
   font-size: 1.1rem;
   max-width: 38em;
-  line-height: 1.4; }
+  line-height: 1.5; }
 
 img {
   max-width: 100%; }
@@ -19,7 +22,34 @@ figure {
   position: relative; }
 
 input, textarea {
-  font-size: 1em; }
+  font-size: inherit; }
+
+input[type="checkbox"] {
+  position: absolute;
+  clip: rect(0, 0, 0, 0); }
+
+input[type="checkbox"] + label::before {
+  content: '\a0';
+  display: inline-block;
+  vertical-align: middle;
+  width: 1.2em;
+  height: 1.2em;
+  margin-right: .2em;
+  border-radius: .2em;
+  background-color: #b7b6b8;
+  text-indent: .25em;
+  transition: all .2s ease-in-out;
+  font-size: 1.2em; }
+
+input[type="checkbox"]:focus + label::before {
+  box-shadow: 0 0 0.2em 0.2em #aad9ff; }
+
+input[type="checkbox"]:checked + label::before {
+  content: '\2713';
+  background-color: #85ffc7; }
+
+:disabled, [disabled] {
+  cursor: not-allowed; }
 
 body {
   margin: 0;
@@ -54,7 +84,7 @@ header h1 span {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 100vh;
+  min-height: 85vh;
   background-color: #fffffa; }
 
 .component-block {
@@ -107,16 +137,19 @@ div.lightbox section {
   padding: 1em;
   background-color: #fffffa; }
 
-.btn-close-lightbox::after {
+.close-lightbox {
+  display: block; }
+
+.close-lightbox::after {
   z-index: -1;
-  content: "";
+  content: '';
   display: block;
   position: fixed;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8); }
+  background-color: rgba(0, 0, 0, 0.6); }
 
 /*// ========================================================
 // Log in 
@@ -139,13 +172,16 @@ button[type=submit] {
   margin-top: 0.5em;
   padding: 0.75em 0.5em;
   background-color: #85ffc7;
-  transition: all .2s ease-in-out; }
+  transition: all .2s ease-out; }
 
-button[type=submit]:hover {
+button[type=submit]:hover, button[type=submit]:focus {
   background-color: #52ffb0;
-  cursor: pointer;
-  transform: translateY(-0.1rem);
-  box-shadow: 0 6px 0 -3px #515052; }
+  transform: translateY(-0.1rem) scale(1.03);
+  box-shadow: 0 15px 0 -10px #b7b6b8; }
+
+button[type=submit]:active {
+  transform: translateY(0.1rem) scale(1);
+  box-shadow: none; }
 
 input[type=email], input[type=password] {
   border: 1px solid #b7b6b8;
@@ -154,7 +190,7 @@ input[type=email], input[type=password] {
 
 label[for=field-stay-logged-in] {
   font-size: .8em;
-  color: #b7b6b8; }
+  color: #515052; }
 
 .container-input:first-child input {
   border-bottom: 0; }
@@ -230,6 +266,7 @@ li.chat-item[data-message="received"] {
   align-items: flex-end; }
 
 li.chat-item .container-message {
+  border-radius: 1em 1em 1em 0;
   padding: 0.5em 1em;
   margin-bottom: 1em;
   width: 80%;
@@ -239,16 +276,17 @@ li.chat-item .container-message {
   background-color: #e7f4ff; }
 
 li.chat-item[data-message="received"] .container-message {
-  background-color: #d2ffea; }
+  background-color: #d2ffea;
+  border-radius: 1em 1em 0; }
 
 li.chat-item p {
   margin: 0.5em 0 1em; }
 
 li.chat-item footer {
-  margin: 0.5em 0;
-  font-size: .8em; }
+  margin: 0.5em 0; }
 
 li.chat-item footer p {
+  font-size: .8em;
   margin: 0;
   color: #515052; }
 
@@ -326,9 +364,8 @@ figcaption footer {
 /*// ========================================================
 // Rating
 // ========================================================*/
-.component-rating {
-  display: flex;
-  flex-direction: row; }
+.component-rating svg {
+  width: 100px; }
 
 .component-rating input[type=radio] {
   display: none; }
@@ -337,12 +374,63 @@ figcaption footer {
   background-color: blue; }
 
 .component-rating label {
+  float: left;
+  display: flex;
+  margin: 0.5em 1em;
+  flex-direction: column;
   text-align: center; }
 
 /*// ========================================================
+// Loader
+// ========================================================*/
+.component-loader {
+  background-image: linear-gradient(#e7f4ff 19px, transparent 0), linear-gradient(#ffe1e1 23px, transparent 0), linear-gradient(#d2ffea 89px, transparent 0);
+  background-size: 60% 97px, 90% 73px, 80% 103px; }
+
+.container-loader-blocks i {
+  width: 1em;
+  height: 1em;
+  border-radius: 75% 15%;
+  background-color: #aad9ff;
+  margin: 0 -.125em;
+  transform: rotate(45deg);
+  display: inline-block;
+  vertical-align: middle;
+  animation-name: middle-loading-blocks;
+  animation-timing-function: linear;
+  animation-duration: .8s;
+  animation-iteration-count: infinite; }
+
+.container-loader-blocks i:first-child {
+  animation-name: first-loading-block;
+  animation-timing-function: ease-in;
+  animation-duration: .8s;
+  animation-iteration-count: infinite;
+  opacity: 0;
+  transform: translate(-1em) scale(0) rotate(45deg); }
+
+.container-loader-blocks i:last-child {
+  animation-name: last-loading-block;
+  animation-timing-function: ease-in;
+  animation-duration: .8s;
+  animation-iteration-count: infinite; }
+
+@keyframes middle-loading-blocks {
+  100% {
+    transform: translate(1em) scale(1) rotate(45deg); } }
+@keyframes first-loading-block {
+  100% {
+    transform: translate(1em) scale(1) rotate(45deg);
+    opacity: 1; } }
+@keyframes last-loading-block {
+  100% {
+    transform: translate(2em) scale(0) rotate(45deg);
+    opacity: 0;
+    background-color: #aad9ff; } }
+/*// ========================================================
 // Media min-width
 // ========================================================*/
-@media only screen and (min-width: 48em) {
+@media only screen and (min-width: 50em) {
   header h1 span {
     display: inline-block; }
 
@@ -350,7 +438,7 @@ figcaption footer {
     order: 1; }
 
   .container-component {
-    min-height: 100vh;
+    min-height: 85vh;
     flex-direction: row; }
 
   .component-block {
