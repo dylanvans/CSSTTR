@@ -2,8 +2,8 @@
 
 @font-face {
     font-family: Ampersand;
-    src: local('courier');
-    unicode-range: U+2a, U+2f;
+    src: local('Lucida Console');
+    unicode-range: U+2a, U+2f, U+0026;
 }
 
 $margin: 1em;
@@ -16,8 +16,9 @@ $main-blue: darken(#DDF0FF, 10%);
 $light-blue: lighten(#DDF0FF, 2%);
 $main-red: #FF312E;
 $light-red: lighten($main-red, 35%);
-$main-green: #85FFC7;
-$light-green: lighten($main-green, 15%);
+$main-green: darken(#85FFC7, 10%);
+$light-green: lighten(#85FFC7, 15%);
+
 
 a {
 	color: currentColor;
@@ -40,6 +41,36 @@ img {
 figure {
 	margin: 0;
 	position: relative;
+}
+
+fieldset {
+	border: 0;
+	padding: 0;
+	margin: 0;
+}
+
+button {
+	border: 0;
+	border-radius: .2em;
+	font-size: 1rem;
+	text-align: center;
+}
+
+progress {
+	width: 100%;
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+progress::-webkit-progress-bar {
+	background-color: $light-green;
+	border-radius: .2em;
+	height: 1.5em;
+}
+
+progress::-webkit-progress-value {
+	border-radius: .2em 0 0 .2em;
+	background-color: $main-green;
 }
 
 input, textarea {
@@ -201,16 +232,9 @@ div.lightbox section {
 /*// ========================================================
 // Log in 
 // ========================================================*/
-fieldset {
-	border: 0;
-	padding: 0;
-	margin: 0;
-}
-
-button {
-	border: 0;
-	font-size: 1rem;
-	text-align: center;
+form fieldset:first-child:valid input {
+	background-color: $light-green;
+	border-color: $main-green;
 }
 
 button[type=submit] {
@@ -226,8 +250,8 @@ button[type=submit] {
 
 button[type=submit]:hover, button[type=submit]:focus {
 	background-color: darken($main-green, 10%);
-	transform: translateY(-.1rem) scale(1.03);
-	box-shadow: 0 15px 0 -10px $light-grey;
+	transform: translateY(-.2rem) scale(1.03);
+	box-shadow: 0 15px 5px -10px $light-grey;
 }
 
 button[type=submit]:active {
@@ -236,6 +260,7 @@ button[type=submit]:active {
 }
 
 input[type=email], input[type=password] {
+	transition: all .3s ease-in-out;
 	border: 1px solid $light-grey;
 	padding: 1.5em;
 	width: min-content;
@@ -467,15 +492,25 @@ figcaption footer {
 }
 
 .component-rating svg {
-	width: 100px;
+	width: 90px;
 }
 
 .component-rating input[type=radio] {
-	display: none;
+	position: absolute;
+    clip: rect(0,0,0,0);
 }
 
-.component-rating input:checked + label {
-	background-color: blue;
+.component-rating input[type=radio]:indeterminate + label svg {
+	filter: none;
+}
+
+.component-rating input:checked + label svg {
+	transform: rotate(-5deg);
+}
+
+.component-rating input:not(:checked) + label svg {
+	filter: blur(3px);
+	transform: scale(.8);
 }
 
 .component-rating label {
@@ -486,6 +521,25 @@ figcaption footer {
 	text-align: center;
 }
 
+.component-rating label svg {
+	transition: all .3s ease-in-out;
+}
+
+
+
+/*// ========================================================
+// Progress
+// ========================================================*/
+.component-progress {
+	width: 100%;
+}
+
+.component-progress ol {
+	display: flex;
+	padding: 0;
+	list-style-type: none;
+	justify-content: space-between;
+}
 
 
 /*// ========================================================
@@ -493,10 +547,11 @@ figcaption footer {
 // ========================================================*/
 .component-loader {
 	background-image:
-	    linear-gradient($light-blue 19px, transparent 0),
-	    linear-gradient($light-red 23px, transparent 0),
-	    linear-gradient($light-green 89px, transparent 0);
-	background-size: 60% 97px, 90% 73px, 80% 103px;
+		linear-gradient($light-red 23px, transparent 0),
+	    linear-gradient($main-white 19px, transparent 0),
+	    linear-gradient($light-green 89px, transparent 0),
+	    linear-gradient($light-blue 43px, transparent 0);
+	background-size: 100% 97px, 100% 73px, 100% 103px, 100% 61px;
 }
 
 .container-loader-blocks i {

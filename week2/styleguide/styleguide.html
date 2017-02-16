@@ -19,14 +19,16 @@
 		<div class="container-component">
 			<section class="component-block">
 				<form class="component login-form" action="/" method="post">
-					<fieldset class="container-input">
-				   		<input type="email" id="field-email" name="field-email" autocomplete="email" required>
-				   		<label for="field-email">Email</label>
+					<fieldset>
+						<div class="container-input">
+					   		<input type="email" id="field-email" name="field-email" autocomplete="email" required>
+					   		<label for="field-email">Email</label>
+						</div>
+					    <div class="container-input">
+					    	<input type="password" id="field-password" name="field-password" required>
+					    	<label for="field-password">Password</label> 	
+					    </div>
 					</fieldset>
-				    <fieldset class="container-input">
-				    	<input type="password" id="field-password" name="field-password" required>
-				    	<label for="field-password">Password</label> 	
-				    </fieldset>
 					<fieldset>
 				    	<input type="checkbox" id="field-stay-logged-in" name="field-stay-logged-in" value="stay-logged-in">
 				    	<label for="field-stay-logged-in">Stay logged in</label>
@@ -215,7 +217,7 @@
 	<article class="chapter">
 		<div class="container-component">
 			<section class="component-block">
-				<nav class="component">
+				<nav class="component component-progress">
 				    <h1>Finish your order</h1>
 
 				    <progress value="0.25" max="1">25%</progress>
@@ -258,7 +260,7 @@
 			</section>
 			
 			<footer class="component-description">
-				<h2>/* Loader */</h2>
+				<h2>/* Loader & pseudorandom background */</h2>
 				<p>Deze component .Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
 			</footer>
 		</div>
@@ -273,7 +275,7 @@
 	</div>
 
 
-<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+<!-- <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script> -->
 </body>
 </html>
 

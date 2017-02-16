@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Cabin");
 @font-face {
   font-family: Ampersand;
-  src: local("courier");
-  unicode-range: U+2a, U+2f; }
+  src: local("Lucida Console");
+  unicode-range: U+2a, U+2f, U+0026; }
 a {
   color: currentColor; }
 
@@ -20,6 +20,31 @@ img {
 figure {
   margin: 0;
   position: relative; }
+
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0; }
+
+button {
+  border: 0;
+  border-radius: .2em;
+  font-size: 1rem;
+  text-align: center; }
+
+progress {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none; }
+
+progress::-webkit-progress-bar {
+  background-color: #d2ffea;
+  border-radius: .2em;
+  height: 1.5em; }
+
+progress::-webkit-progress-value {
+  border-radius: .2em 0 0 .2em;
+  background-color: #52ffb0; }
 
 input, textarea {
   font-size: inherit; }
@@ -46,7 +71,7 @@ input[type="checkbox"]:focus + label::before {
 
 input[type="checkbox"]:checked + label::before {
   content: '\2713';
-  background-color: #85ffc7; }
+  background-color: #52ffb0; }
 
 :disabled, [disabled] {
   cursor: not-allowed; }
@@ -154,15 +179,9 @@ div.lightbox section {
 /*// ========================================================
 // Log in 
 // ========================================================*/
-fieldset {
-  border: 0;
-  padding: 0;
-  margin: 0; }
-
-button {
-  border: 0;
-  font-size: 1rem;
-  text-align: center; }
+form fieldset:first-child:valid input {
+  background-color: #d2ffea;
+  border-color: #52ffb0; }
 
 button[type=submit] {
   display: block;
@@ -171,19 +190,20 @@ button[type=submit] {
   font-weight: 300;
   margin-top: 0.5em;
   padding: 0.75em 0.5em;
-  background-color: #85ffc7;
+  background-color: #52ffb0;
   transition: all .2s ease-out; }
 
 button[type=submit]:hover, button[type=submit]:focus {
-  background-color: #52ffb0;
-  transform: translateY(-0.1rem) scale(1.03);
-  box-shadow: 0 15px 0 -10px #b7b6b8; }
+  background-color: #1fff98;
+  transform: translateY(-0.2rem) scale(1.03);
+  box-shadow: 0 15px 5px -10px #b7b6b8; }
 
 button[type=submit]:active {
   transform: translateY(0.1rem) scale(1);
   box-shadow: none; }
 
 input[type=email], input[type=password] {
+  transition: all .3s ease-in-out;
   border: 1px solid #b7b6b8;
   padding: 1.5em;
   width: min-content; }
@@ -365,13 +385,21 @@ figcaption footer {
 // Rating
 // ========================================================*/
 .component-rating svg {
-  width: 100px; }
+  width: 90px; }
 
 .component-rating input[type=radio] {
-  display: none; }
+  position: absolute;
+  clip: rect(0, 0, 0, 0); }
 
-.component-rating input:checked + label {
-  background-color: blue; }
+.component-rating input[type=radio]:indeterminate + label svg {
+  filter: none; }
+
+.component-rating input:checked + label svg {
+  transform: rotate(-5deg); }
+
+.component-rating input:not(:checked) + label svg {
+  filter: blur(3px);
+  transform: scale(0.8); }
 
 .component-rating label {
   float: left;
@@ -380,12 +408,27 @@ figcaption footer {
   flex-direction: column;
   text-align: center; }
 
+.component-rating label svg {
+  transition: all .3s ease-in-out; }
+
+/*// ========================================================
+// Progress
+// ========================================================*/
+.component-progress {
+  width: 100%; }
+
+.component-progress ol {
+  display: flex;
+  padding: 0;
+  list-style-type: none;
+  justify-content: space-between; }
+
 /*// ========================================================
 // Loader
 // ========================================================*/
 .component-loader {
-  background-image: linear-gradient(#e7f4ff 19px, transparent 0), linear-gradient(#ffe1e1 23px, transparent 0), linear-gradient(#d2ffea 89px, transparent 0);
-  background-size: 60% 97px, 90% 73px, 80% 103px; }
+  background-image: linear-gradient(#ffe1e1 23px, transparent 0), linear-gradient(#fffffa 19px, transparent 0), linear-gradient(#d2ffea 89px, transparent 0), linear-gradient(#e7f4ff 43px, transparent 0);
+  background-size: 100% 97px, 100% 73px, 100% 103px, 100% 61px; }
 
 .container-loader-blocks i {
   width: 1em;
