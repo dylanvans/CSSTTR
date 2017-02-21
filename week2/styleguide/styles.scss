@@ -59,6 +59,7 @@ button {
 progress {
 	width: 100%;
 	-webkit-appearance: none;
+	-moz-appearence: none;
 	appearance: none;
 }
 
@@ -292,7 +293,14 @@ label[for=field-stay-logged-in] {
 }
 
 /* Resource https://codepen.io/sivan/pen/alKwf */
-.container-input input:focus ~ label {
+.container-input input:focus + label {
+	top: .9em;
+	left: 1.5em;
+	font-size: .8rem;
+	color: $light-grey;
+}
+
+.container-input input[data-empty="false"] + label {
 	top: .9em;
 	left: 1.5em;
 	font-size: .8rem;
