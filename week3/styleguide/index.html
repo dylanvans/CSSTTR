@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Podcast app design</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<header>
+		<nav class="component main-nav">
+			<div class="container-nav-heading">
+				<h1>API opdracht</h1>
+				<a href="#lightbox">Log in</a>
+			</div>
+		    <ul class="main-nav-list">
+		        <li><a href="#main-content" aria-label="Home, current page">Home</a></li>
+		        <li>
+		            <a href="/products">Products</a>
+
+		            <ul class="sub-nav">
+		                <li><a href="/products/rock">Rock</a></li>
+		                <li><a href="/products/paper">Paper</a></li>
+		                <li><a href="/products/scissors">Scissors</a></li>
+		            </ul>
+		        </li>
+		        <li><a href="/about">About</a></li>
+		        <li><a href="/contact">Contact</a></li>
+		    </ul>
+		</nav>
+	</header>
+	<main>
+		<article class="component media-item">
+			<h1><a href="#">The Ezra Klein Show</a></h1>
+			<h2>Elizabeth Dre covered Watergat. Here's what she thinks of Trump.</h2>
+
+			<img src="https://vasilis.nl/voto/fotos/klein/161001180558-de-boot-gemist-150.jpg" alt="A colorful crayon drawing on the hood of a car." />
+
+			<p>Elizabeth Drew is the author of Washington Journal, one of my favorite books about Watergat. Drew covered the story as a reporter for the New Yorker, and the book emerges from the real-time, journalistic diary she kept amidst the chaos.</p>
+		</article>
+		<article class="component media-item">
+			<h1><a href="#">Waking Up with Sam Harris</a></h1>
+			<h2>#65 — We're All Cucks Now</h2>
+
+			<img src="https://vasilis.nl/voto/fotos/klein/161001180558-de-boot-gemist-150.jpg" alt="A colorful crayon drawing on the hood of a car." />
+
+			<p>In this episode of the Waking Up podcast, Sam Harris speaks with David Frum about the presidency of Donald Trump.</p>
+		</article>
+
+	</main>
+	<div class="lightbox" id="lightbox">
+		<form class="component login-form" action="/" method="post">
+			<fieldset>
+				<div class="container-input">
+			   		<input type="email" id="field-email" name="field-email" autocomplete="email" required>
+			   		<label for="field-email">Email</label>
+				</div>
+			    <div class="container-input">
+			    	<input type="password" id="field-password" name="field-password" required>
+			    	<label for="field-password">Password</label> 	
+			    </div>
+			</fieldset>
+			<fieldset>
+		    	<input type="checkbox" id="field-stay-logged-in" name="field-stay-logged-in" value="stay-logged-in">
+		    	<label for="field-stay-logged-in">Stay logged in</label>
+		    </fieldset>
+
+		    <a href="#">Forgot password</a>
+
+		    <button class="btn-log-in" type="submit">Inloggen</button>
+		    <a href="#" role="button" class="close-lightbox">Sluit</button>
+		</form>	
+	</div>
+<script src="script.js"></script>
+</body>
+</html>
+

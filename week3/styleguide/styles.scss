@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Cabin');
+@import url('https://fonts.googleapis.com/css?family=Bree+Serif|Lato:300,400,700');
 
 @font-face {
     font-family: Ampersand;
@@ -8,16 +8,22 @@
 
 $margin: 1em;
 
-$main-white: #FFFFFA;
-$main-black: #0C090D;
+$main-white: #FBFFFE;
+$sub-white: #FFFFFC;
+$main-black: #242424;
 $main-grey: #515052;
-$light-grey: lighten($main-grey, 40%);
-$main-blue: darken(#DDF0FF, 10%);
-$light-blue: lighten(#DDF0FF, 2%);
+$light-grey: #F4F4F4;
+$main-blue: #5FD6DB;
+$light-blue: lighten(#DDF0FF, 2%);                               
 $main-red: #FF312E;
 $light-red: lighten($main-red, 35%);
-$main-green: darken(#85FFC7, 10%);
-$light-green: lighten(#85FFC7, 15%);
+$main-green: rgb(36, 207, 107);
+$light-green: lighten(rgb(36, 207, 107), 25%);
+$main-orange: #FCDA7B;
+$sub-orange: #F6A623;
+$light-orange: lighten($main-orange, 10%);
+$main-yellow: #FFFEB0;
+
 
 a {
 	color: currentColor;
@@ -28,18 +34,24 @@ a:hover, button:hover {
 }
 
 p {
-	font-size: 1.1rem;
-	max-width: 38em;
-	line-height: 1.5;
+	font-size: 1.2em;
+	line-height: 1.8;
+	letter-spacing: .004em;
+	max-width: 45rem;
 }
 
 img {
 	max-width: 100%;
+	width: 100%;
 }
 
 figure {
 	margin: 0;
 	position: relative;
+}
+
+form {
+	box-sizing: border-box;
 }
 
 fieldset {
@@ -49,32 +61,33 @@ fieldset {
 }
 
 button {
+	letter-spacing: .04em;
+	text-transform: uppercase;
+	font-family: 'Ampersand', 'Lato', sans-serif;
 	border: 0;
-	border-radius: .2em;
-	font-size: 1rem;
+	font-size: .95rem;
 	text-align: center;
 }
 
-progress {
-	width: 100%;
-	-webkit-appearance: none;
-	-moz-appearence: none;
-	appearance: none;
-}
-
-progress::-webkit-progress-bar {
-	background-color: $light-green;
-	border-radius: .2em;
-	height: 1.5em;
-}
-
-progress::-webkit-progress-value {
-	border-radius: .2em 0 0 .2em;
-	background-color: $main-green;
+button:focus {
+	border: 3px solid $main-blue;
+	outline: none;
 }
 
 input, textarea {
+	font-family: inherit;
 	font-size: inherit;
+}
+
+textarea {
+	padding: 1em;
+	border: 0;
+	background-color: $light-grey;
+}
+
+input:focus, textarea:focus, a:focus {
+	outline: none;
+	box-shadow: 0 0 .2em .2em $main-blue;
 }
 
 input[type="checkbox"] {
@@ -89,7 +102,6 @@ input[type="checkbox"] + label::before {
 	width: 1.2em;
 	height: 1.2em;
 	margin-right: .2em;
-	border-radius: .2em;
 	background-color: $light-grey;
 	text-indent: .25em;
 	transition: all .2s ease-in-out;
@@ -100,9 +112,10 @@ input[type="checkbox"]:focus + label::before {
     box-shadow: 0 0 .2em .2em $main-blue;
 }
 
+
 input[type="checkbox"]:checked + label::before {
 	content: '\2713';
-	background-color: $main-green;
+	background-color: $light-green;
 }
 
 :disabled, [disabled] {
@@ -111,11 +124,11 @@ input[type="checkbox"]:checked + label::before {
 
 body {
 	margin: 0;
-	font-family: 'Ampersand', 'Cabin', sans-serif;
+	font-family: 'Ampersand', 'Lato', sans-serif;
 	background-color: $main-black;
 }
 
-header {
+body > header {
 	box-sizing: border-box;
 	color: $main-white;
 	width: 100%;
@@ -125,13 +138,23 @@ header {
 	align-items: flex-end;
 }
 
-header > h1 {
+h1, h2, h3, legend {
+	font-family: 'Bree Serif', 'Lato', serif;
+}
+
+h1 {
+	font-size: 2em;
+	margin: 1em 0;
+	line-height: 1.2;
+}
+
+body > header > h1 {
 	padding: $margin $margin*1.5;
 	margin: 0;
 	font-size: 1.5rem;
 }
 
-header > h1 span {
+body > header > h1 span {
 	font-size: 1rem;
 	opacity: .8;
 	display: block;
@@ -143,6 +166,7 @@ header > h1 span {
 }
 
 .container-component {
+	box-sizing: border-box;
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -152,7 +176,7 @@ header > h1 span {
 }
 
 .component-block {
-	background-color: $light-red;
+	background-color: $main-yellow;
 	width: 100%;
 	min-height: 60vh;
 	display: flex;
@@ -163,7 +187,6 @@ header > h1 span {
 .component {
 	background-color: $main-white;
 	padding: $margin*1.5 $margin*2;
-	border-radius: .2em;
 	margin: $margin*1.2;
 }
 
@@ -180,7 +203,7 @@ header > h1 span {
 }
 
 .chapter:nth-child(odd) .component-block {
-	background-color: $light-blue;
+	background-color: $main-blue;
 }
 
 
@@ -205,14 +228,17 @@ div.lightbox:target {
   	justify-content: center;
 }
 
+div.lightbox:target .close-lightbox {
+	display: block;
+}
+
 div.lightbox section {
-	border-radius: .2em;
 	padding: $margin;
 	background-color: $main-white;
 }
 
 .close-lightbox {
-	display: block;
+	display: none;
 }
 
 .close-lightbox::after {
@@ -224,7 +250,7 @@ div.lightbox section {
 	top: 0;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(0,0,0, .6);
+	background-color: rgba(22, 65, 67, .6);
 }
 
 
@@ -233,24 +259,25 @@ div.lightbox section {
 // Log in 
 // ========================================================*/
 .login-form fieldset {
+	box-sizing: border-box;
 	margin-bottom: $margin*.5;
 }
 
 button[type=submit] {
 	display: block;
 	width: 100%;
-	color: $main-black;
+	color: $main-white;
 	font-weight: 300;
 	margin-top: $margin*.5;
-	padding: $margin*.75 $margin*.5;
-	background-color: $main-green;
+	padding: $margin*.9 $margin*.7;
+	background-color: $sub-orange;
 	transition: all .2s ease-out;
 }
 
 button[type=submit]:hover, button[type=submit]:focus {
-	background-color: darken($main-green, 10%);
+	background-color: darken($sub-orange, 5%);
 	transform: translateY(-.2rem) scale(1.03);
-	box-shadow: 0 15px 5px -10px $light-grey;
+	box-shadow: 0 15px 5px -10px darken($light-grey, 10%);
 }
 
 button[type=submit]:active {
@@ -260,9 +287,8 @@ button[type=submit]:active {
 
 input[type=email], input[type=password] {
 	transition: all .3s ease-in-out;
-	border: 1px solid $light-grey;
+	border: 1px solid darken($light-grey, 10);
 	padding: 1.5em;
-	width: min-content;
 }
 
 label[for=field-stay-logged-in] {
@@ -283,6 +309,7 @@ label[for=field-stay-logged-in] {
 }
 
 .container-input label {
+	color: $main-grey;
 	position: absolute;
 	left: 1.5em;
 	top: 49%;
@@ -295,14 +322,14 @@ label[for=field-stay-logged-in] {
 	top: .8em;
 	left: 2em;
 	font-size: .8rem;
-	color: $light-grey;
+	color: $main-grey;
 }
 
 .container-input input[data-empty="false"] + label {
 	top: .8em;
 	left: 2em;
 	font-size: .8rem;
-	color: $light-grey;
+	color: $main-grey;
 }
 /**/
 
@@ -324,24 +351,43 @@ form fieldset:first-child:valid input[data-empty="false"]:valid + label {
 /*// ========================================================
 // Media Item
 // ========================================================*/
-.media-item {
-	position: relative;
-	transition: background-color .3s ease-in-out;
+.media-item-block {
+	background-color: $light-red;
+	width: 100%;
+	min-height: 60vh;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
-.media-item img {
+.media-item-block > article:not(:first-child) {
+	flex-basis: 45%;
+}
+
+.media-item {
+	margin: 1em;
 	width: 100%;
+	box-sizing: border-box;
+	position: relative;
+}
+
+.media-item header {
+	position: relative;
+}
+
+.media-item:not(:first-child) header {
+	font-size: 0.8em;
 }
 
 .media-item h1 {
-	font-size: 2em;
-	text-align: center;
+    text-decoration: none;
+    color: $main-black;
+	font-weight: 300;
 }
 
 .media-item a {
 	font-weight: 100;
 	text-decoration: none;
-	transition: all .3s ease-in-out;
 }
 
 .media-item a:after {
@@ -358,16 +404,13 @@ form fieldset:first-child:valid input[data-empty="false"]:valid + label {
 	border: 5px solid $main-blue;
 }
 
-.media-item:hover {
-	background-color: $light-green;
-}
-
 
 
 /*// ========================================================
 // Chat
 // ========================================================*/
 .component-chat {
+	background-color: $main-white;
 	width: 90%;
 }
 
@@ -382,63 +425,75 @@ li.chat-item {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-}
-
-li.chat-item[data-message="received"] {
 	align-items: flex-end;
 }
 
+li.chat-item[data-message="received"] {
+	align-items: flex-start;
+}
+
 li.chat-item .container-message {
-	border-radius: 1em 1em 1em 0;
+	border-radius: 1em 1em 0;
 	padding: $margin*.5 $margin;
 	margin-bottom: $margin;
 	width: 80%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	background-color: $light-blue;
+	background-color: $main-blue;
+	color: $main-white;
 }
 
 li.chat-item[data-message="received"] .container-message {
-	background-color: $light-green;
-	border-radius: 1em 1em 0;
-}
-
-li.chat-item p {
-	margin: $margin*.5 0 $margin;
+	background-color: $light-grey;
+	color: $main-black;
+	border-radius: 1em 1em 1em 0;
 }
 
 li.chat-item footer {
-	margin: $margin*.5 0;
+	margin: $margin*.5 .5em;
 }
 
 li.chat-item footer p {
-	font-size: .8em;
+	font-size: .7em;
 	margin: 0;
-	color: $main-grey;
+	color: inherit;
+	text-align: right;
+	font-weight: 300;
 }
 
-form.chat-form {
+.chat-form {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 }
 
-form.chat-form textarea {
+.chat-form label {
+	color: $main-grey;
+}
+
+.chat-form textarea {
 	height: 3rem;
 }
 
+.chat-form button {
+	align-self: flex-end;
+	display: inline-block;
+	width: auto;
+	padding: 1em 1.5em;
+}
 
 
 /*// ========================================================
 // Navigation
 // ========================================================*/
 .main-nav {
+	box-sizing: border-box;
 	width: 100%;
 	padding: $margin $margin 0;
 	margin: 0 $margin;
-	color: $main-black;
-	border-radius: 0 0 .2em .2em;
+	color: $main-white;
+	background-color: $main-black;
 }
 
 .container-nav-heading {
@@ -455,15 +510,28 @@ nav ul {
 }
 
 nav h1 {
-	margin: 0;
+	margin: 0.2em;
+}
+
+.main-nav li {
+	position: relative;
 }
 
 .main-nav a {
+	font-weight: 300;
 	text-decoration: none;
 }
 
+.main-nav a:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
 .main-nav-list {
-	display: flex;
 	width: 100%;
 	padding: .2em;
 }
@@ -473,32 +541,38 @@ nav h1 {
 }
 
 .main-nav-list li {
-	text-align: center;
 	position: relative;
-	background-color: $main-white;
-	padding: 1em;
-	transition: background-color .3s ease-in-out;
+	background-color: $main-black;
+	padding: .5em;
 }
 
 .main-nav-list li:hover, .main-nav-list li a:focus {
-	background-color: $light-green;
+	background-color: $main-yellow;
+	color: $main-black;
 }
 
 .main-nav-list > li:not(:last-child) { 
-	border-right: 1px solid $light-green;
+	border-bottom: 1px solid $main-yellow;
 }
 
 .sub-nav {
-	display: none;
-	top: 100%;
-	left: 0;
-	width: 100%;
-	position: absolute;
+	display: flex;
+	margin: 1em 0 0 1.5em;
 	flex-direction: column;
+	transition: all .3s ease-in-out;
 }
 
-.main-nav-list li:hover .sub-nav {
-	display: flex;
+.sub-nav a {
+	color: $main-white;
+}
+
+.sub-nav li {
+	list-style-type: disc;
+	padding: .2em;
+}
+
+.sub-nav li:hover a{
+	color: $main-black;
 }
 
 
@@ -507,19 +581,17 @@ nav h1 {
 // Picture with subtitle
 // ========================================================*/
 figure figcaption {
-	position: absolute;
-	bottom: 0;
-	color: $main-white;
-	background-color: rgba(0,0,0,.7);
-	padding: $margin;
-}
-
-figcaption p {
-	margin: 0 0 1em;
+	box-sizing: border-box;
+	font-size: .8em;
+	font-weight: 300;
+	color: $main-grey;
 }
 
 figcaption footer {
+	font-weight: 300;
 	font-size: .8em;
+	color: $main-grey;
+	text-align: right;
 }
 
 
@@ -528,7 +600,13 @@ figcaption footer {
 // Rating
 // ========================================================*/
 .component-rating svg {
-	width: 90px;
+	width: 40px;
+}
+
+.component-rating legend {
+	padding: .5em 1em;
+	background-color: $main-white;
+	font-size: 1em;
 }
 
 .component-rating input[type=radio] {
@@ -540,17 +618,14 @@ figcaption footer {
 	filter: none;
 }
 
-.component-rating input:checked + label svg {
-	transform: rotate(-5deg);
-}
-
 .component-rating input:not(:checked) + label svg {
-	filter: blur(3px);
-	transform: scale(.8);
+	filter: blur(2px);
+	transform: scale(.9);
 }
 
 .component-rating label {
 	float: left;
+	font-size: .8em;
 	display: flex;
 	margin: $margin*.5 $margin;
 	flex-direction: column;
@@ -567,15 +642,85 @@ figcaption footer {
 // Progress
 // ========================================================*/
 .component-progress {
+	box-sizing: border-box;
 	width: 100%;
 }
 
 .component-progress ol {
+	font-size: 0.7em;
+	font-weight: 300;
+	overflow: hidden;
 	display: flex;
 	padding: 0;
 	list-style-type: none;
-	justify-content: space-between;
 }
+
+.component-progress li {
+	text-align: center;
+	width: calc(100%/4);
+}
+
+.component-progress li:not(:last-child) {
+	margin-right: 1.5em;
+}
+
+.component-progress li a, .component-progress li span {
+	text-decoration: none;
+	padding: 1em 0;
+	padding-left: 2em;
+	color: $main-grey;
+	background-color: $light-grey;
+	position: relative; 
+	display: block;
+}
+
+.component-progress li:last-child span, .component-progress li:first-child a {
+	padding-left: 1em;
+}
+
+.component-progress li a::after, .component-progress li:not(:last-child) span::after {
+	transition: all .3s ease-in-out;
+	content: ''; 
+	border-top: 4em solid transparent;
+	border-bottom: 4em solid transparent;
+	border-left: 2em solid $light-grey;
+	position: absolute;
+	top: 50%;
+	margin-top: -4em; 
+	left: 100%;
+	z-index: 2; 
+}
+
+.component-progress li a::before, .component-progress li:not(:last-child) span::before {
+	content: ''; 
+	border-top: 4em solid transparent;       
+	border-bottom: 4em solid transparent;
+	border-left: 2em solid $main-white;
+	position: absolute;
+	top: 50%;
+	margin-top: -4em; 
+	margin-left: .5em;
+	left: 100%;
+	z-index: 1; 
+}
+
+.component-progress li a::after {
+	border-left: 2em solid $main-blue;
+}
+
+.component-progress li a {
+	transition: all .3s ease-in-out;
+	background-color: $main-blue;
+	color: $main-white;
+}
+
+.component-progress li a:hover, .component-progress li a:focus {
+	background-color: darken($main-blue, 20%);
+}
+
+.component-progress li a:hover:after, .component-progress li a:focus:after {
+	border-left: 2em solid darken($main-blue, 20%);	
+} 
 
 
 /*// ========================================================
@@ -642,12 +787,28 @@ figcaption footer {
 	}
 }
 
+.spinning-loader {
+	display: block;
+	width: 2em;
+	height: 2em;
+	border-radius: 100%;
+	border: .5em solid transparent;
+	border-top-color: $main-blue;
+	animation: rotate 1.5s infinite ease-in-out;
+}
+
+@keyframes rotate {  
+	0% {transform:rotate(110deg);}
+	50% {transform:rotate(250deg);} 
+	100% {transform:rotate(110deg);} 
+}
+
 
 
 /*// ========================================================
 // Media min-width
 // ========================================================*/
-@media only screen and (min-width: 50em) {
+@media only screen and (min-width: 55em) {
 	header h1 span {
 		display: inline-block;
 	}
@@ -671,8 +832,6 @@ figcaption footer {
 		width: 40vw;
 	}
 
-
-
 	/*// ========================================================
 	// Navigation
 	// ========================================================*/
@@ -683,11 +842,133 @@ figcaption footer {
 		justify-content: space-between;
 	}
 
+	.main-nav-list li {
+		padding: 1em;
+		position: relative;
+		text-align: center;
+	}
+
+	.main-nav-list > li:not(:last-child) { 
+		border-right: 1px solid $main-yellow;
+		border-bottom: 0;
+	}
+
+	.main-nav-list li[data-submenu='true']:after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		width: 1em;
+		height: .5em;
+		left: 50%;
+		transform: translateX(-50%);
+		background-image: url(icon-down.svg);
+		background-size: 1em;
+	}
+
 	.container-nav-heading {
 		margin-right: $margin;
 	}
 
 	.main-nav-list {
+		display: flex;
 		width: auto;
+	}
+
+	.sub-nav {
+		position: absolute;
+		opacity: 0;
+		clip: rect(0, 0, 0, 0); 
+		height: 1px; 
+		width: 1px; 
+		margin: -1px; 
+		padding: 0;
+	}
+
+
+	.sub-nav li {
+		list-style-type: none;
+	}
+
+	.main-nav-list li:hover .sub-nav, .main-nav-list a:focus ~ .sub-nav {
+		opacity: 1;
+		top: 100%;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		clip: auto;
+		margin: 0;
+	}
+
+	/*// ========================================================
+	// Media-item
+	// ========================================================*/
+	.media-item h1 {
+		padding: .5em;
+		font-size: 2em;
+		line-height: 1.3;
+		bottom: 0;
+	    position: absolute;
+	    width: 85%;
+	    left: 1rem;
+	    z-index: 1;
+	    background-color: $main-black;
+		color: $main-white;
+	}
+
+	.media-item:first-child h1 {
+		font-size: 2.5em;
+		bottom: 1rem;
+	}
+
+	.media-item:hover h1 {
+		background-color: $main-orange;
+		color: $main-black;
+	}
+
+	/*// ========================================================
+	// Picture with subtitle
+	// ========================================================*/
+	figure figcaption {
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		color: $main-white;
+		background-color: rgba(22, 65, 67, .6);
+	}
+
+	figcaption p {
+		padding: $margin;
+		margin: 0;
+	}
+
+	figcaption footer {
+		color: $main-white;
+		padding: $margin;
+	}
+
+	/*// ========================================================
+	// Progress
+	// ========================================================*/
+	.component-progress {
+		box-sizing: content-box;
+	}
+
+	.component-progress ol {
+		font-size: 1em;
+	}
+
+	.component-progress li:last-child span, .component-progress li:first-child a {
+		padding-left: 2.5em;
+	}
+
+	.component-progress li a, .component-progress li span {
+		padding: 1em;
+		padding-left: 3em;
+	}
+
+	.component-progress li a, .component-progress li span {
+		text-decoration: none;
+		padding: 1em;
+		padding-left: 3em;
 	}
 }
